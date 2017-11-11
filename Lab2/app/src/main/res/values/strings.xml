@@ -4,4 +4,6 @@
     <string name="fragment2_button">Fragment 2</string>
     <string name="fragment1_welcome">this is first fragment</string>
     <string name="fragment2_welcome">this is second fragment</string>
+    <string name="fragment1_form">Name</string>
+    <string name="fragment2_form">Surname</string>
 </resources>
