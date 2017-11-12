@@ -40,7 +40,7 @@ public class SwitchableFragmentSecond extends Fragment
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         EditText form = view.findViewById(R.id.form_surname);
 
-        form.setText(preferences.getString("surname", "Surname"));
+        form.setText(preferences.getString("surname", form.getText().toString()));
     }
 
     private void savePreferences()

@@ -5,4 +5,6 @@
     <string name="fragment2_welcome">to jest drugi fragment</string>
     <string name="fragment1_form">Imię</string>
     <string name="fragment2_form">Nazwisko</string>
+    <string name="power_connected">Podłączono zasilanie</string>
+    <string name="power_disconnected">Odłączono zasilanie</string>
 </resources>

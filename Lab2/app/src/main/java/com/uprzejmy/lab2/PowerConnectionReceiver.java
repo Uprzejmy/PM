@@ -15,11 +15,16 @@ public class PowerConnectionReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        int current = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-        int max = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-
-        float level = (float)current / (float)max;
-
-        Toast.makeText(context, "current: " + current + "max: " + max , Toast.LENGTH_LONG).show();
+        switch(intent.getAction())
+        {
+            case "android.intent.action.ACTION_POWER_CONNECTED":
+                Toast.makeText(context, context.getString(R.string.power_connected), Toast.LENGTH_LONG).show();
+                break;
+            case "android.intent.action.ACTION_POWER_DISCONNECTED":
+                Toast.makeText(context, context.getString(R.string.power_disconnected), Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
+        }
     }
 }
