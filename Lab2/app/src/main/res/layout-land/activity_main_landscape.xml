@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context="com.uprzejmy.lab2.MainActivity" tools:layout_editor_absoluteY="73dp">
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/contentFragment"
@@ -16,7 +16,7 @@
             android:layout_marginBottom="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline_main"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp">
-    </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
     <Button
             android:text="@string/fragment1_button"
             android:layout_width="wrap_content"
