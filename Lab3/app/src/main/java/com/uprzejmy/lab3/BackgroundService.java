@@ -17,7 +17,7 @@ import java.util.TimerTask;
 public class BackgroundService extends Service
 {
     private Timer timer;
-    private TimerTask timerTask;
+    private TimerTask task;
     private Handler handler;
 
     public void onCreate()
@@ -26,14 +26,14 @@ public class BackgroundService extends Service
 
         timer = new Timer();
         handler = new Handler();
-        timerTask = new BackgroundServiceNotification(handler, getApplicationContext());
+        task = new BackgroundServiceNotification(handler, getApplicationContext());
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, "background service has been started", Toast.LENGTH_LONG).show();
 
-        timer.scheduleAtFixedRate(timerTask, 3 * 1000, 8 * 1000);
+        timer.scheduleAtFixedRate(task, 8 * 1000, 8 * 1000);
 
         return START_NOT_STICKY;
     }
@@ -43,9 +43,9 @@ public class BackgroundService extends Service
     {
         Toast.makeText(this, "background service has been stopped", Toast.LENGTH_LONG).show();
 
-        if(timerTask != null)
+        if(task != null)
         {
-            timerTask.cancel();
+            task.cancel();
             timer.purge();
         }
 
