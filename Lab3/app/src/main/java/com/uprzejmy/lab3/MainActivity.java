@@ -22,10 +22,25 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         startService(new Intent(this, BackgroundService.class));
+    }
 
+    @Override
+    protected void onStart()
+    {
         boundServiceIntent = new Intent(this, BoundBackgroundService.class);
         bindService(boundServiceIntent, connection, Context.BIND_AUTO_CREATE);
+
+        super.onStart();
     }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+
+        unbindService(connection);
+    }
+
 
     private ServiceConnection connection = new ServiceConnection()
     {
@@ -45,11 +60,10 @@ public class MainActivity extends AppCompatActivity
 
     public void switchActivityAction(View view)
     {
-        stopService(boundServiceIntent);
-        unbindService(connection);
-
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
+
+        stopService(boundServiceIntent);
     }
 
     public void showCounterAction(View view)

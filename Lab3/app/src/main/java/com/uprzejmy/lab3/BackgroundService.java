@@ -33,7 +33,7 @@ public class BackgroundService extends Service
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, "background service has been started", Toast.LENGTH_LONG).show();
 
-        timer.scheduleAtFixedRate(task, 8 * 1000, 8 * 1000);
+        timer.scheduleAtFixedRate(task, 4 * 1000, 11 * 1000);
 
         return START_NOT_STICKY;
     }
