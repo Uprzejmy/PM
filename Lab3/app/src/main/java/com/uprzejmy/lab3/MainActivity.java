@@ -7,11 +7,14 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
     BoundBackgroundService boundService;
     boolean isBound = false;
+    Intent boundServiceIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,11 +24,12 @@ public class MainActivity extends AppCompatActivity
 
         startService(new Intent(this, BackgroundService.class));
 
-        bindService(new Intent(this, BoundBackgroundService.class), connection, Context.BIND_AUTO_CREATE);
+        boundServiceIntent = new Intent(this, BoundBackgroundService.class);
+        bindService(boundServiceIntent, connection, Context.BIND_AUTO_CREATE);
     }
 
-    private ServiceConnection connection = new ServiceConnection() {
-
+    private ServiceConnection connection = new ServiceConnection()
+    {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service)
         {
@@ -38,6 +42,19 @@ public class MainActivity extends AppCompatActivity
         public void onServiceDisconnected(ComponentName arg0) {
             isBound = false;
         }
-
     };
+
+    public void switchActivityAction(View view)
+    {
+        stopService(boundServiceIntent);
+        unbindService(connection);
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
+    }
+
+    public void showCounterAction(View view)
+    {
+        Toast.makeText(this, "" + boundService.getTimeIndicator(), Toast.LENGTH_LONG).show();
+    }
 }

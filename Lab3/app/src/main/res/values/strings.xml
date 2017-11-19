@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Lab3</string>
+    <string name="welcome_message_main_activity">welcome to service testing app</string>
+    <string name="switch_activity_button">switch to second activity</string>
+    <string name="get_counter_button">get counter from bound service</string>
+    <string name="welcome_message_second_activity">second activity, bound service should\'ve been stopped by now
+    </string>
 </resources>

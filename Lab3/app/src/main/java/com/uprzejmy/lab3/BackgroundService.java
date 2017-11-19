@@ -41,15 +41,15 @@ public class BackgroundService extends Service
     @Override
     public void onDestroy()
     {
-        Toast.makeText(this, "background service has been stopped", Toast.LENGTH_LONG).show();
+        super.onDestroy();
+
+        Toast.makeText(this, "background service has been destroyed", Toast.LENGTH_LONG).show();
 
         if(task != null)
         {
             task.cancel();
             timer.purge();
         }
-
-        super.onDestroy();
     }
 
     @Override

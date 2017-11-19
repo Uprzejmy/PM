@@ -27,6 +27,11 @@ public class BoundBackgroundService extends Service
         }
     }
 
+    public int getTimeIndicator()
+    {
+        return timeIndicator;
+    }
+
     public void onCreate()
     {
         super.onCreate();
@@ -43,9 +48,23 @@ public class BoundBackgroundService extends Service
 
         timeIndicator = 0;
         timer.scheduleAtFixedRate(task, 13 * 1000, 13 * 1000);
-        Toast.makeText(getApplicationContext(), "Your bound service has been started", Toast.LENGTH_SHORT).show();
 
         return binder;
+    }
 
+    @Override
+    public boolean onUnbind(Intent intent)
+    {
+        timer.cancel();
+
+        return super.onUnbind(intent);
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+
+        Toast.makeText(this, "bound background service has been destroyed", Toast.LENGTH_LONG).show();
     }
 }
