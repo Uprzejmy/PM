@@ -48,7 +48,7 @@ public class BackgroundService extends Service
         if(task != null)
         {
             task.cancel();
-            timer.purge();
+            timer.cancel();
         }
     }
 

@@ -13,7 +13,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
 {
     BoundBackgroundService boundService;
-    boolean isBound = false;
     Intent boundServiceIntent;
 
     @Override
@@ -35,12 +34,12 @@ public class MainActivity extends AppCompatActivity
         {
             BoundBackgroundService.BoundBackgroundServiceBinder binder = (BoundBackgroundService.BoundBackgroundServiceBinder) service;
             boundService = binder.getService();
-            isBound = true;
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            isBound = false;
+        public void onServiceDisconnected(ComponentName arg0)
+        {
+            //empty??
         }
     };
 

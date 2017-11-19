@@ -38,7 +38,7 @@ public class BoundBackgroundService extends Service
 
         timer = new Timer();
         handler = new Handler();
-        task = new BoundBackgroundServiceNotification(handler, getApplicationContext());
+        task = new BoundBackgroundServiceNotification(handler, this);
     }
 
     @Override
@@ -55,7 +55,10 @@ public class BoundBackgroundService extends Service
     @Override
     public boolean onUnbind(Intent intent)
     {
-        timer.cancel();
+        if (timer != null)
+        {
+            timer.cancel();
+        }
 
         return super.onUnbind(intent);
     }
@@ -65,6 +68,11 @@ public class BoundBackgroundService extends Service
     {
         super.onDestroy();
 
-        Toast.makeText(this, "bound background service has been destroyed", Toast.LENGTH_LONG).show();
+        if (timer != null)
+        {
+            timer.cancel();
+        }
+
+        Toast.makeText(this, "bound background service has been stopped", Toast.LENGTH_LONG).show();
     }
 }

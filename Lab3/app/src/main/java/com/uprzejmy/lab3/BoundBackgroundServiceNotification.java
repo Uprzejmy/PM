@@ -29,8 +29,7 @@ public class BoundBackgroundServiceNotification extends TimerTask
             @Override
             public void run()
             {
-                Toast.makeText(context, "bound background service is still working: " + BoundBackgroundService.timeIndicator, Toast.LENGTH_LONG).show();
-
+                Toast.makeText(context, "bound background service is still working", Toast.LENGTH_LONG).show();
                 BoundBackgroundService.timeIndicator += 13;
             }
         });

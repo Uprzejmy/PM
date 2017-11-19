@@ -24,8 +24,6 @@
             android:onClick="switchActivityAction"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="@+id/guideline1"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -37,8 +35,6 @@
             android:onClick="showCounterAction"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"/>
