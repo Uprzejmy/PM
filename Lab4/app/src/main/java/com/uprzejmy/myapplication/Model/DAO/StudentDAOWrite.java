@@ -28,14 +28,14 @@ public class StudentDAOWrite implements IDAOWrite<Student>
     }
 
     @Override
-    public void update(Student item)
+    public void update(Student student)
     {
 
     }
 
     @Override
-    public void remove(Student item)
+    public void remove(Student student)
     {
-
+        database.delete(StudentsSchema.TABLE, StudentsSchema.COLUMN_ID + " = ?", new String[]{Integer.toString(student.getId())});
     }
 }

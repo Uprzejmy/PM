@@ -1,7 +1,7 @@
 package com.uprzejmy.myapplication.Model.Entity;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Uprzejmy on 25.11.2017.
@@ -12,7 +12,7 @@ public class Student
     private int id;
     private String name;
     private String surname;
-    private Collection<Group> groups = new ArrayList<>();
+    private List<Group> groups = new ArrayList<>();
 
     public Student(){}
 
@@ -52,12 +52,12 @@ public class Student
         this.surname = surname;
     }
 
-    public Collection<Group> getGroups()
+    public List<Group> getGroups()
     {
         return groups;
     }
 
-    public void setGroups(Collection<Group> groups)
+    public void setGroups(List<Group> groups)
     {
         this.groups = groups;
     }

@@ -27,15 +27,16 @@ public class StudentDAORead implements IDAORead<Student>
         String[] parameters = {Integer.toString(id)};
         Cursor cursor = database.query(StudentsSchema.TABLE, StudentsSchema.COLUMNS, "WHERE id = ?", parameters, null, null, null, null);
 
+        Student student = new Student();
+
         if(cursor != null)
         {
             cursor.moveToFirst();
-        }
 
-        Student student = new Student();
-        student.setId(cursor.getInt(cursor.getColumnIndex(StudentsSchema.COLUMN_ID)));
-        student.setName(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_NAME)));
-        student.setSurname(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_SURNAME)));
+            student.setId(cursor.getInt(cursor.getColumnIndex(StudentsSchema.COLUMN_ID)));
+            student.setName(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_NAME)));
+            student.setSurname(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_SURNAME)));
+        }
 
         return student;
     }
@@ -46,7 +47,6 @@ public class StudentDAORead implements IDAORead<Student>
         List<Student> students = new ArrayList<>();
 
         Cursor cursor = database.rawQuery("SELECT * FROM " + StudentsSchema.TABLE,null);
-        //query(StudentsSchema.TABLE, null, null, null, null, null, null);
 
         if(cursor != null)
         {
