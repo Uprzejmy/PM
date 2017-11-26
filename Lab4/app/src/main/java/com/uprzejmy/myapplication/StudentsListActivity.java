@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.uprzejmy.myapplication.Model.Database.DataManager;
+import com.uprzejmy.myapplication.Model.Database.IDataManager;
 import com.uprzejmy.myapplication.Model.Entity.Student;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class StudentsListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students_list);
 
-        DataManager dataManager = DataManager.getDataManager(this);
+        IDataManager dataManager = DataManager.getDataManager(this);
 
         students = dataManager.getAllStudents();
         studentsListView = findViewById(R.id.studentsListView);
@@ -36,7 +37,7 @@ public class StudentsListActivity extends AppCompatActivity
 
     private void deleteStudent(int position)
     {
-        DataManager dataManager = DataManager.getDataManager(this);
+        IDataManager dataManager = DataManager.getDataManager(this);
 
         dataManager.removeStudent(students.get(position));
         students.remove(position);
@@ -46,7 +47,7 @@ public class StudentsListActivity extends AppCompatActivity
 
     private void showStudentsGroups(int position)
     {
-        DataManager dataManager = DataManager.getDataManager(this);
+        IDataManager dataManager = DataManager.getDataManager(this);
 
         Student student = dataManager.getStudentWithGroups(students.get(position));
 

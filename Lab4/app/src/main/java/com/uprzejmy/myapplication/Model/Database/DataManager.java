@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Uprzejmy on 26.11.2017.
  */
 
-public class DataManager
+public class DataManager implements IDataManager
 {
     private static Context context;
     private static DataManager instance;

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import com.uprzejmy.myapplication.Model.Database.DataManager;
+import com.uprzejmy.myapplication.Model.Database.IDataManager;
 import com.uprzejmy.myapplication.Model.Entity.Group;
 import com.uprzejmy.myapplication.Model.Entity.Student;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 
     private void loadExampleData()
     {
-        DataManager dataManager = DataManager.getDataManager(this);
+        IDataManager dataManager = DataManager.getDataManager(this);
 
         if(!dataManager.isEmptyDatabase())
         {
