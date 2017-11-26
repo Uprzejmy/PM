@@ -1,14 +1,10 @@
 package com.uprzejmy.myapplication;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import com.uprzejmy.myapplication.Model.Database.DataManager;
-import com.uprzejmy.myapplication.Model.Database.StudentsSchema;
 import com.uprzejmy.myapplication.Model.Entity.Student;
 
 public class MainActivity extends AppCompatActivity
