@@ -51,9 +51,6 @@ public class DataManager implements IDataManager
         student.setName(name);
         student.setSurname(surname);
         studentsDAO.add(student);
-
-        //TODO remove empty return?
-        return;
     }
 
     public void removeStudent(Student student)
@@ -96,9 +93,6 @@ public class DataManager implements IDataManager
         Group group = new Group();
         group.setName(name);
         groupDAO.add(group);
-
-        //TODO remove empty return?
-        return;
     }
 
     public void removeGroup(Group group)

@@ -47,7 +47,10 @@ public class StudentsGroupsDAORead
                 group.setName(cursor.getString(cursor.getColumnIndex(GroupsSchema.COLUMN_NAME)));
                 groups.add(group);
             } while(cursor.moveToNext());
+
+            cursor.close();
         }
+
 
         return groups;
     }
@@ -76,6 +79,8 @@ public class StudentsGroupsDAORead
                 student.setSurname(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_SURNAME)));
                 students.add(student);
             } while(cursor.moveToNext());
+
+            cursor.close();
         }
 
         return students;

@@ -36,7 +36,10 @@ public class GroupDAORead implements IDAORead<Group>
 
             group.setId(cursor.getInt(cursor.getColumnIndex(GroupsSchema.COLUMN_ID)));
             group.setName(cursor.getString(cursor.getColumnIndex(GroupsSchema.COLUMN_NAME)));
+
+            cursor.close();
         }
+
 
         return group;
     }
@@ -59,6 +62,8 @@ public class GroupDAORead implements IDAORead<Group>
                 group.setName(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_NAME)));
                 groups.add(group);
             } while(cursor.moveToNext());
+
+            cursor.close();
         }
 
         return groups;

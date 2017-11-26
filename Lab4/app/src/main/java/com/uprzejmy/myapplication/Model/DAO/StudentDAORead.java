@@ -36,6 +36,8 @@ public class StudentDAORead implements IDAORead<Student>
             student.setId(cursor.getInt(cursor.getColumnIndex(StudentsSchema.COLUMN_ID)));
             student.setName(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_NAME)));
             student.setSurname(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_SURNAME)));
+
+            cursor.close();
         }
 
         return student;
@@ -60,6 +62,8 @@ public class StudentDAORead implements IDAORead<Student>
                 student.setSurname(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_SURNAME)));
                 students.add(student);
             } while(cursor.moveToNext());
+
+            cursor.close();
         }
 
         return students;
