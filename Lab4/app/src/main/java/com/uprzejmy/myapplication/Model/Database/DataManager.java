@@ -60,8 +60,10 @@ public class DataManager
     {
         SQLiteDatabase database = DBHelper.getDBHelper(context).getWritableDatabase();
 
-        StudentDAOWrite studentsDAO = new StudentDAOWrite(database);
+        StudentsGroupsDAOWrite studentsGroupDAO = new StudentsGroupsDAOWrite(database);
+        studentsGroupDAO.removeAllGroupsFromStudent(student);
 
+        StudentDAOWrite studentsDAO = new StudentDAOWrite(database);
         studentsDAO.remove(student);
     }
 
@@ -99,6 +101,17 @@ public class DataManager
         return;
     }
 
+    public void removeGroup(Group group)
+    {
+        SQLiteDatabase database = DBHelper.getDBHelper(context).getWritableDatabase();
+
+        StudentsGroupsDAOWrite studentsGroupDAO = new StudentsGroupsDAOWrite(database);
+        studentsGroupDAO.removeAllStudentsFromGroup(group);
+
+        GroupDAOWrite groupDAO = new GroupDAOWrite(database);
+        groupDAO.remove(group);
+    }
+
     public List<Group> getAllGroups()
     {
         SQLiteDatabase database = DBHelper.getDBHelper(context).getReadableDatabase();
@@ -106,6 +119,17 @@ public class DataManager
         GroupDAORead groupDAO = new GroupDAORead(database);
 
         return groupDAO.findAll();
+    }
+
+    public Group getGroupWithStudents(Group group)
+    {
+        SQLiteDatabase database = DBHelper.getDBHelper(context).getReadableDatabase();
+
+        StudentsGroupsDAORead studentsGroupsDAO = new StudentsGroupsDAORead(database);
+
+        group.setStudents(studentsGroupsDAO.findStudentsByGroupId(group.getId()));
+
+        return group;
     }
 
     public void addStudentToGroup(Student student, Group group)

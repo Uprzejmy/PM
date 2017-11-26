@@ -4,7 +4,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.uprzejmy.myapplication.Model.Database.GroupsSchema;
 import com.uprzejmy.myapplication.Model.Database.StudentsGroupsSchema;
+import com.uprzejmy.myapplication.Model.Database.StudentsSchema;
 import com.uprzejmy.myapplication.Model.Entity.Group;
+import com.uprzejmy.myapplication.Model.Entity.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +50,34 @@ public class StudentsGroupsDAORead
         }
 
         return groups;
+    }
+
+    public List<Student> findStudentsByGroupId(int groupId)
+    {
+        List<Student> students = new ArrayList<>();
+
+        String parameter = Integer.toString(groupId);
+        String query = "SELECT * FROM " + StudentsSchema.TABLE +
+                " INNER JOIN " + StudentsGroupsSchema.TABLE +
+                " ON " + StudentsSchema.TABLE + "." + StudentsSchema.COLUMN_ID + " = " + StudentsGroupsSchema.TABLE + "." + StudentsGroupsSchema.COLUMN_STUDENT_ID +
+                " WHERE " + StudentsGroupsSchema.COLUMN_GROUP_ID + " = " + parameter;
+
+        Cursor cursor = database.rawQuery(query, null);
+
+        if(cursor != null)
+        {
+            cursor.moveToFirst();
+
+            do
+            {
+                Student student = new Student();
+                student.setId(cursor.getInt(cursor.getColumnIndex(StudentsSchema.COLUMN_ID)));
+                student.setName(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_NAME)));
+                student.setSurname(cursor.getString(cursor.getColumnIndex(StudentsSchema.COLUMN_SURNAME)));
+                students.add(student);
+            } while(cursor.moveToNext());
+        }
+
+        return students;
     }
 }

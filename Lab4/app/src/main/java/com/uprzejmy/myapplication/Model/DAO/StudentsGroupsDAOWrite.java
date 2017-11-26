@@ -27,4 +27,14 @@ public class StudentsGroupsDAOWrite
 
         database.insert(StudentsGroupsSchema.TABLE, null, values);
     }
+
+    public void removeAllStudentsFromGroup(Group group)
+    {
+        database.delete(StudentsGroupsSchema.TABLE, StudentsGroupsSchema.COLUMN_GROUP_ID + " = ?", new String[]{Integer.toString(group.getId())});
+    }
+
+    public void removeAllGroupsFromStudent(Student student)
+    {
+        database.delete(StudentsGroupsSchema.TABLE, StudentsGroupsSchema.COLUMN_STUDENT_ID + " = ?", new String[]{Integer.toString(student.getId())});
+    }
 }

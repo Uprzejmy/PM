@@ -9,7 +9,7 @@ import com.uprzejmy.myapplication.Model.Entity.Student;
 
 import java.util.List;
 
-public class StudentsList extends AppCompatActivity
+public class StudentsListActivity extends AppCompatActivity
 {
     List<Student> students;
     ArrayAdapter studentsListAdapter;

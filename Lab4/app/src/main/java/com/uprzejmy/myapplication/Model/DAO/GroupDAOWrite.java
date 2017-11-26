@@ -36,6 +36,6 @@ public class GroupDAOWrite implements IDAOWrite<Group>
     @Override
     public void remove(Group group)
     {
-
+        database.delete(GroupsSchema.TABLE, GroupsSchema.COLUMN_ID + " = ?", new String[]{Integer.toString(group.getId())});
     }
 }

@@ -43,7 +43,13 @@ public class MainActivity extends AppCompatActivity
 
     public void StudentsListActivity(View view)
     {
-        Intent intent = new Intent(this, StudentsList.class);
+        Intent intent = new Intent(this, StudentsListActivity.class);
+        startActivity(intent);
+    }
+
+    public void GroupsListActivity(View view)
+    {
+        Intent intent = new Intent(this, GroupsListActivity.class);
         startActivity(intent);
     }
 
