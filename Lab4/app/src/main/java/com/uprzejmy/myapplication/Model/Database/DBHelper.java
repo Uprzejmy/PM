@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
+
 /**
  * Created by Uprzejmy on 25.11.2017.
  */
@@ -12,26 +15,37 @@ public class DBHelper extends SQLiteOpenHelper
 {
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "lab4-db";
+    private static DBHelper instance;
 
-    public DBHelper(Context context)
+    private DBHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static synchronized DBHelper getDBHelper(Context context)
+    {
+        if(instance == null)
+        {
+            instance = new DBHelper(context.getApplicationContext());
+        }
+
+        return instance;
     }
 
     @Override
     public void onCreate(SQLiteDatabase database)
     {
-        database.execSQL(StudentsTable.CREATE_TABLE);
-        database.execSQL(GroupsTable.CREATE_TABLE);
-        database.execSQL(StudentsGroupsTable.CREATE_TABLE);
+        database.execSQL(StudentsSchema.CREATE_TABLE);
+        database.execSQL(GroupsSchema.CREATE_TABLE);
+        database.execSQL(StudentsGroupsSchema.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion)
     {
-        database.execSQL(StudentsGroupsTable.DROP_TABLE);
-        database.execSQL(StudentsTable.DROP_TABLE);
-        database.execSQL(GroupsTable.DROP_TABLE);
+        database.execSQL(StudentsGroupsSchema.DROP_TABLE);
+        database.execSQL(StudentsSchema.DROP_TABLE);
+        database.execSQL(GroupsSchema.DROP_TABLE);
 
         onCreate(database);
     }

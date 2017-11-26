@@ -14,9 +14,22 @@ public class Student
     private String surname;
     private Collection<Group> groups = new ArrayList<>();
 
+    public Student(){}
+
+    public Student(String name, String surname)
+    {
+        this.name = name;
+        this.surname = surname;
+    }
+
     public int getId()
     {
         return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public String getName()
@@ -47,5 +60,14 @@ public class Student
     public void setGroups(Collection<Group> groups)
     {
         this.groups = groups;
+    }
+
+    @Override
+    public String toString()
+    {
+        return
+            "id: " + id + " " +
+            "name: " + name + " " +
+            "surname: " + surname;
     }
 }

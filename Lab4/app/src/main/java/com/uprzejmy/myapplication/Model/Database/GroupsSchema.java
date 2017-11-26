@@ -4,10 +4,10 @@ package com.uprzejmy.myapplication.Model.Database;
  * Created by Uprzejmy on 25.11.2017.
  */
 
-public class GroupsTable
+public class GroupsSchema
 {
     //don't let anyone instantiate it by mistake
-    private GroupsTable(){}
+    private GroupsSchema(){}
 
     public static final String TABLE = "groups";
     public static final String COLUMN_ID = "id";
