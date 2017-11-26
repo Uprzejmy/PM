@@ -53,6 +53,7 @@ public class Group
     @Override
     public String toString()
     {
+        //TODO remove id
         return
                 "id: " + id + " " +
                 " name: " + name + " ";

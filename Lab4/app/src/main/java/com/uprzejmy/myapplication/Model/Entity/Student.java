@@ -65,6 +65,7 @@ public class Student
     @Override
     public String toString()
     {
+        //TODO remove id
         return
             "id: " + id + " " +
             "name: " + name + " " +

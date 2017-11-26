@@ -2,8 +2,11 @@ package com.uprzejmy.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.uprzejmy.myapplication.Model.Database.DataManager;
 import com.uprzejmy.myapplication.Model.Entity.Student;
 
@@ -34,6 +37,19 @@ public class StudentsListActivity extends AppCompatActivity
         configureListeners();
     }
 
+    public void editStudent(View view, s)
+    {
+        setContentView(R.layout.activity_students_edit);
+
+        TextView nameField = findViewById(R.id.studentName);
+        TextView surnameField = findViewById(R.id.studentSurname);
+    }
+
+    public void editStudentConfirm(View view)
+    {
+
+    }
+
     private void deleteStudent(int position)
     {
         DataManager dataManager = DataManager.getDataManager(this);
@@ -46,14 +62,24 @@ public class StudentsListActivity extends AppCompatActivity
 
     private void showStudentsGroups(int position)
     {
+        setContentView(R.layout.activity_students_groups_list);
+
         DataManager dataManager = DataManager.getDataManager(this);
 
         Student student = dataManager.getStudentWithGroups(students.get(position));
 
-        studentsGroupsListView = findViewById(R.id.studentsListView);
+        studentsGroupsListView = findViewById(R.id.studentsGroupsListView);
 
         studentsGroupsListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, student.getGroups());
         studentsGroupsListView.setAdapter(studentsGroupsListAdapter);
+
+        Button switchButton = findViewById(R.id.editStudentButton);
+        switchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editStudent(view);
+            }
+        });
     }
 
     private void configureListeners()
